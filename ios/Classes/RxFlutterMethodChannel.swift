@@ -310,7 +310,7 @@ public class RxFlutterPluginMethodChannel {
     /**
     Set default error handler. If an error handler is provided with the observable will take priority.
     */
-    private func setDefaultErrorHandler(errorHandler: ErrorHandler) {
+    public func setDefaultErrorHandler(errorHandler: ErrorHandler) {
         self.defaultErrorHandler = errorHandler
     }
 }
