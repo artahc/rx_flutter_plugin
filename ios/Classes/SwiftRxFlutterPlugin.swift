@@ -4,7 +4,7 @@ import UIKit
 public class SwiftRxFlutterPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "rx_flutter_plugin", binaryMessenger: registrar.messenger())
-    let instance = SwiftFlutterPluginTestPlugin()
+    let instance = SwiftRxFlutterPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 

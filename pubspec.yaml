@@ -21,18 +21,16 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   # This section identifies this Flutter project as a plugin project.
-  # The androidPackage and pluginClass identifiers should not ordinarily
+  # The 'pluginClass' and Android 'package' identifiers should not ordinarily
   # be modified. They are used by the tooling to maintain consistency when
   # adding or updating assets for this project.
-  platforms:
-    android:
-      package: tenko.rx_flutter_plugin
-      pluginClass: RxFlutterPlugin
-    ios:
-      pluginClass: SwiftRxFlutterPlugin
-#  plugin:
-#    androidPackage: tenko.rx_flutter_plugin
-#    pluginClass: RxFlutterPlugin
+  plugin:
+    platforms:
+      android:
+        package: tenko.rx_flutter_plugin
+        pluginClass: RxFlutterPlugin
+      ios:
+        pluginClass: SwiftRxFlutterPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
