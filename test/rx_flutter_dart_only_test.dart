@@ -13,7 +13,10 @@ void main() {
   });
 
   tearDown(() {
-    channel.setMockMethodCallHandler(null);
+    channel.setMockMethodCallHandler(channel_name,
+        (m) async {
+          return m;
+        });
   });
 
 //  test('getPlatformVersion', () async {

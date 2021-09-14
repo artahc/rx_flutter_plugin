@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:rx_flutter_plugin/rx_flutter_plugin.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'stream_type.dart';
 import 'exceptions.dart';
 import 'dart:async';
@@ -16,6 +17,7 @@ final _log = RxPluginLogger("RxFlutterMethodChannel");
 ///Special methods that are not usable are "initializeRxFlutterPluginChannel"
 class RxFlutterMethodChannel {
   MethodChannel _channel;
+  TestDefaultBinaryMessenger _testDefaultBinaryMessenger;
 
 
   RxFlutterMethodChannel(
@@ -26,8 +28,9 @@ class RxFlutterMethodChannel {
   }
 
   /// For debugging responses from native.
-  void setMockMethodCallHandler(Future<dynamic> handler(MethodCall call)) {
-    _channel.setMockMethodCallHandler(handler);
+  void setMockMethodCallHandler(String channelName, Future<dynamic> handler(MethodCall call)) {
+    // _channel.setMockMethodCallHandler(handler);
+    _testDefaultBinaryMessenger.checkMockMessageHandler(channelName, handler);
   }
 
   /// Always return null.
