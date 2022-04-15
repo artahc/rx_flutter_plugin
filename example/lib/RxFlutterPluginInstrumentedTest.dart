@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rx_flutter_plugin/src/rx_flutter_method_channel.dart';
+import 'package:rx_flutter_plugin/rx_flutter_plugin.dart';
 //import 'dart:io';
 //import 'dart:async';
 
 void main() async {
-
   testSingle_returns1();
 
   completableCompletes();
@@ -28,21 +27,15 @@ class MainWidget extends StatelessWidget {
   }
 }
 
-
 void testObservable_returnsIncreasingInts_success() {
   final channel = RxFlutterMethodChannel("rx_flutter_plugin");
-  channel.getObservable("testObservable_returnsIncreasingInts_success", null)
-      .listen(
-          (response) {
-        print(response as int);
-      },
-      onDone: () {
-        print("done");
-      },
-      onError: (error) {
-        print("error: $error");
-      }
-  );
+  channel.getObservable("testObservable_returnsIncreasingInts_success", null).listen((response) {
+    print(response as int);
+  }, onDone: () {
+    print("done");
+  }, onError: (error) {
+    print("error: $error");
+  });
 }
 
 void completableCompletes() async {

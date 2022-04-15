@@ -96,7 +96,7 @@ packages:
     source: hosted
     version: "1.8.0"
   rx_flutter_plugin:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       path: ".."
       relative: true

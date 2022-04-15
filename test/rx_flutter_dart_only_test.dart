@@ -1,22 +1,20 @@
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rx_flutter_plugin/src/rx_flutter_method_channel.dart';
 
 //TODO:: Move unit tests to example app.
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   final String channel_name = "rx_flutter_plugin_dart_test";
   final RxFlutterMethodChannel channel = RxFlutterMethodChannel(channel_name);
 
-  setUp(() {
-
-  });
+  setUp(() {});
 
   tearDown(() {
-    channel.setMockMethodCallHandler(channel_name,
-        (m) async {
-          return m;
-        });
+    channel.setMockMethodCallHandler(channel_name, (m) async {
+      return m;
+    });
   });
 
 //  test('getPlatformVersion', () async {
