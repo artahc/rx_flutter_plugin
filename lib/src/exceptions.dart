@@ -1,8 +1,6 @@
 class InvalidObservableTypeException implements Exception {
-  String cause;
-  InvalidObservableTypeException([String cause]) {
-    this.cause = cause;
-  }
+  final String? cause;
+  InvalidObservableTypeException([this.cause]);
 
   @override
   String toString() {
@@ -12,10 +10,8 @@ class InvalidObservableTypeException implements Exception {
 }
 
 class ObservableStateException implements Exception {
-  String cause;
-  ObservableStateException([String cause]) {
-    this.cause = cause;
-  }
+  final String? cause;
+  ObservableStateException([this.cause]);
 
   @override
   String toString() {
@@ -25,10 +21,8 @@ class ObservableStateException implements Exception {
 }
 
 class ObservableNotAvailableException implements Exception {
-  String cause;
-  ObservableNotAvailableException([String cause]) {
-    this.cause = cause;
-  }
+  final String? cause;
+  ObservableNotAvailableException([this.cause]);
 
   @override
   String toString() {
@@ -39,15 +33,9 @@ class ObservableNotAvailableException implements Exception {
 
 ///Exception thrown by the observable.
 class ObservableThrownException implements Exception {
-  String cause;
-  dynamic payload;
-  ObservableThrownException([
-    String cause,
-    dynamic payload
-  ]) {
-    this.cause = cause;
-    this.payload = payload;
-  }
+  final String? cause;
+  final dynamic payload;
+  ObservableThrownException([this.cause, this.payload]);
 
   @override
   String toString() {

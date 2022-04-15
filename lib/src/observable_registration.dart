@@ -7,42 +7,24 @@ import 'logger.dart';
 final _log = RxPluginLogger("ObservableRegistration");
 
 class ObservableRegistrationRequest {
-  String channel;
-  String method;
-  StreamType streamType;
-  int requestId;
-  dynamic arguments;
-  ObservableAction oa;
+  final String method;
+  final StreamType streamType;
+  final int requestId;
+  final dynamic arguments;
 
-  ObservableRegistrationRequest._();
-  ObservableRegistrationRequest(
-      String method,
-      StreamType streamType,
-      int requestId,
-      dynamic arguments,
-      [ObservableAction oa]
-      ) {
-    this.method = method;
-    this.streamType = streamType;
-    this.requestId = requestId;
-    this.arguments = arguments;
-    this.oa = oa;
-  }
+  final ObservableAction oa;
 
-  Future<ObservableRegistrationResponse> invokeObservableRegistration(
-      MethodChannel channel
-      ) async {
+  ObservableRegistrationRequest(this.method, this.streamType, this.requestId, this.arguments, this.oa);
+
+  Future<ObservableRegistrationResponse> invokeObservableRegistration(MethodChannel channel) async {
     _log.d("Platform channel request: $this");
-    final response = await channel.invokeMethod(
-        this.method,
-        {
-          Field.STREAM_TYPE: StreamTypeHandler.stringValue(this.streamType),
-          Field.METHOD: this.method,
-          Field.PAYLOAD: this.arguments,
-          Field.REQUEST_ID: this.requestId,
-          Field.OBSERVABLE_ACTION: ObservableActionHandler.stringValue(this.oa)
-        }
-    ) as Map;
+    final response = await channel.invokeMethod(this.method, {
+      Field.STREAM_TYPE: StreamTypeHandler.stringValue(this.streamType),
+      Field.METHOD: this.method,
+      Field.PAYLOAD: this.arguments,
+      Field.REQUEST_ID: this.requestId,
+      Field.OBSERVABLE_ACTION: ObservableActionHandler.stringValue(this.oa)
+    }) as Map;
     _log.d("Platform channel response: $response");
     //Cast back to Observable Registration Response
     final orResponse = ObservableRegistrationResponse(response);
@@ -62,16 +44,10 @@ class ObservableRegistrationRequest {
 }
 
 class ObservableRegistrationResponse {
-  int errorCode;
-  String errorMessage;
+  final int errorCode;
+  final String errorMessage;
 
-  ObservableRegistrationResponse(
-      Map<dynamic, dynamic> map
-      ) {
-    this.errorCode = map[Field.ERROR_CODE];
-    this.errorMessage = map[Field.ERROR_MESSAGE];
-    if (errorCode == null) {
-      throw FormatException("errorCode response returned is null. It should be null, please fix.");
-    }
-  }
+  ObservableRegistrationResponse(Map<dynamic, dynamic> map)
+      : errorCode = map[Field.ERROR_CODE],
+        errorMessage = map[Field.ERROR_MESSAGE];
 }
